@@ -1,6 +1,7 @@
 # Linux-Study
 
-![으앙아ㅏ아아아아아아앆!!!!!!!!!!!!!!!!!!!!](https://i2.ruliweb.net/ori/25/02/08/194e5785704545056.gif)
+![으앙아ㅏ아아아아아아앆!!!!!!!!!!!!!!!!!!!!](https://mblogthumb-phinf.pstatic.net/MjAyMzA3MjJfMjk1/MDAxNjkwMDAwMjcxNTMy.QzlvysvM4AS6aq9DXrrsIdjZb89bBoE2scnhRGwwnTEg.HWqcHMAuZaMcY5skL-w_UJ01rmUzqKeO3Pc-aQME1C4g.GIF.dydtmd4/%EB%84%B7.gif?type=w800)
+
 
 ## Step 0
 
