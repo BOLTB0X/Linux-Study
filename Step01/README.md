@@ -1,6 +1,4 @@
-# Steop01
-
-Linux File / Directory 다루기 + Process 다루기 기초
+# Step 01 Linux File / Directory 다루기 + Process 다루기 기초
 
 ## File / Directory 다루기
 
