@@ -22,3 +22,7 @@
 ## [Step 4 Process & Thread](https://github.com/BOLTB0X/Linux-Study/tree/main/Step04)
 
 ## [Step 5 System Call 과 사용자/커널 모드 이해](https://github.com/BOLTB0X/Linux-Study/tree/main/Step05)
+
+## [Step 6 프로세스 생성 및 제어](https://github.com/BOLTB0X/Linux-Study/tree/main/Step06)
+
+
