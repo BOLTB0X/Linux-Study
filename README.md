@@ -25,4 +25,8 @@
 
 ## [Step 6 프로세스 생성 및 제어](https://github.com/BOLTB0X/Linux-Study/tree/main/Step06)
 
+## [Step 7 파일 입출력과 표준 스트림](https://github.com/BOLTB0X/Linux-Study/tree/main/Step07)
+
+## [Step 8 메모리 구조와 동적 메모리 할당](https://github.com/BOLTB0X/Linux-Study/tree/main/Step08)
+
 
