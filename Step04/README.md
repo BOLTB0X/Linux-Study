@@ -56,13 +56,66 @@
    ```
    $ top -H -p <pid>
    ```
-
-## pthread
+## 실습 : pthread
 
 > pthread란 POSIX Thread의 약자로 유닉스계열 POSIX시스템에서 병렬적으로 작동하는 소프트웨어를 작성하기 위하여 제공하는 API
 
 C에서는 **pthread** 로 스레드 제어 가능
 
+```c
+#include <pthread.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+
+void *p_function(void * data) {
+	pid_t pid; //process id
+        pthread_t tid; // thread id
+	pid = getpid(); //4
+	tid = pthread_self();
+	
+	char* thread_name = (char *)data;
+	int i = 0;
+	
+	while(i<3) {
+		printf("thread name : %s, tid : %x, pid : %u\n", thread_name, (unsigned int)tid, (unsigned int)pid); //5
+		i++;
+		sleep(1);
+	}
+}
+
+int main(void) {
+	pthread_t pthread[2];
+	int thr_id;
+	int status;
+	char p1[] = "thread_1";
+	char p2[] = "thread_2";
+	char p3[] = "thread_3";
+	
+	sleep(1); //1
+		     
+	thr_id = pthread_create(&pthread[0], NULL, p_function, (void*)p1); //2
+	if(thr_id < 0) {
+		perror("pthread0 create error");
+		exit(EXIT_FAILURE);
+	}
+		     
+	thr_id = pthread_create(&pthread[1], NULL, p_function, (void *)p2); //2
+	if(thr_id < 0) {
+		perror("pthread1 create error");                                                                  
+		exit(EXIT_FAILURE);
+	}
+        p_function((void *)p3); //3
+	
+	pthread_join(pthread[0], (void **)&status); //6
+       	pthread_join(pthread[1], (void **)&status);
+	
+	printf("end??\n");
+	
+	return 0;
+}	
+```
 
 - `pthread_create` : 스레드를 생성하는 함수
 
@@ -96,6 +149,77 @@ C에서는 **pthread** 로 스레드 제어 가능
    - `retval` : 스레드가 반환한 값을 받을 포인터 (필요 없으면 NULL)
 
    <br/>
+
+- 결과
+
+   <div style="text-align: center;">
+      <img src="https://github.com/BOLTB0X/Linux-Study/blob/main/img/Step04-2.jpg?raw=true" alt="Example Image" width="90%">
+   </div>
+
+
+## 실습 : thread
+
+1. **ex01**
+
+   ```c
+   #include <stdio.h>
+   #include <pthread.h>
+
+   void* say_hello(void* arg) {
+	   printf("Hello from thread!\n");
+	   return NULL;
+   }
+   
+   int main() {
+	   pthread_t tid;
+	
+	   if (pthread_create(&tid, NULL, say_hello, NULL) != 0) {
+		   perror("pthread_create");
+		   return 1;
+	   }
+	
+	   pthread_join(tid, NULL);
+	   printf("Main thread ends.\n");
+	   return 0;
+   }
+   ```
+
+   <div style="text-align: center;">
+      <img src="https://github.com/BOLTB0X/Linux-Study/blob/main/img/Step04-3.jpg?raw=true" alt="Example Image" width="90%">
+   </div>
+
+   <br/>
+
+
+2. **ex02**
+
+   ```c
+   #include <stdio.h>
+   #include <pthread.h>
+
+   void* say_hello(void* arg) {
+	   printf("Hello from thread!\n");
+	   return NULL;
+   }
+
+   int main() {
+	   pthread_t tid;
+	
+	   if (pthread_create(&tid, NULL, say_hello, NULL) != 0) {
+		   perror("pthread_create");
+		   return 1;
+	   }
+	
+	   pthread_join(tid, NULL);
+	   printf("Main thread ends.\n");
+	   return 0;
+   }
+   ```
+
+   <div style="text-align: center;">
+      <img src="https://github.com/BOLTB0X/Linux-Study/blob/main/img/Step04-4.jpg?raw=true" alt="Example Image" width="90%">
+   </div>
+
 
 ## 참고
 
