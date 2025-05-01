@@ -64,6 +64,8 @@
 
    cf. 리눅스에서 대부분 device 는 파일 형태 (`/dev/...`) 로 접근함
 
+   <br/>
+
 4. 정보 유지
 
    > 시간 , UID , 시스템 정보 등을 조회하거나 설정
@@ -77,6 +79,9 @@
    - `uname()` : 시스템 이름, 버전 등 정보 조회
 
    - `times()` : 프로세스 실행 시간 정보 조회
+
+      <br/>
+
 
 5. 통신
 
@@ -98,6 +103,9 @@
 
    - `mmap()` : 메모리 매핑
 
+      <br/>
+
+
 6. 보호
 
    > 접근 권한 , 권한 변경 등 시스템 보호 관련
@@ -112,8 +120,14 @@
 
    - `access()` : 파일 접근 권한 확인
 
+      <br/>
+
+
 cf. 각 시스템 콜을 대부분 `man 2 <함수명>` 으로 확인 가능
    - ex : `man 2 fork` , `man 2 write`
+
+      <br/>
+
 
 ## 커널 (Kernel)
 
@@ -128,6 +142,7 @@ cf. 각 시스템 콜을 대부분 `man 2 <함수명>` 으로 확인 가능
 ## 커널의 주요 역할
 
 역할 | 설명
+---- | ----
 프로세스 관리 | 프로세스 생성, 종료, 스케줄링, 상태 전이 관리 등
 메모리 관리 | 각 프로세스에 메모리를 적절히 할당하고 보호
 파일 시스템 관리 | 파일 생성/삭제, 읽기/쓰기, 디렉토리 구조 관리 등
@@ -138,6 +153,7 @@ cf. 각 시스템 콜을 대부분 `man 2 <함수명>` 으로 확인 가능
 ## 커널의 종류
 
 유형 | 설명
+---- | ----
 모놀리식 커널 | 모든 기능이 하나의 큰 커널 공간에서 동작. 빠르지만 오류 시 전체 시스템에 영향. ex: Linux
 마이크로커널 | 최소한의 기능만 커널에 포함. 나머지는 사용자 공간에서 동작. 안정성 높음. ex: Minix, QNX
 하이브리드 커널 | 모놀리식과 마이크로커널의 장점을 결합한 형태. ex: Windows NT, macOS
@@ -166,6 +182,60 @@ sudo apt upgrade
 # 설치된 커널 목록 확인
 dpkg --list | grep linux-image
 ```
+
+## 실습
+
+- `pid_check`
+
+   ```c
+   #include <stdio.h>
+   #include <unistd.h>
+
+   int main(void) {
+	   printf("내 PID (getpid): %d\n" , getpid());
+	   printf("부모 PID (getppid) %d\n" , getppid());
+	
+	   return 0;
+   }
+   ```
+
+   <br/>
+
+1. **ex01**
+
+   ```c
+   #include <stdio.h>
+   #include <unistd.h>
+
+   int main(void) {
+	   pid_t pit = getpid();
+	   printf("현재 프로세스 ID: %d\n", pit);
+	   return 0;
+   }
+   ```
+
+   <div style="text-align: center;">
+      <img src="https://github.com/BOLTB0X/Linux-Study/blob/main/img/Step05-1.jpg?raw=true" alt="Example Image" width="90%">
+   </div>
+
+   <br/>
+
+2. **ex02**
+
+   ```c
+   #include <unistd.h>
+
+   int main(void) {
+	   const char *msg = "hello, System Call!\n";
+	   write(1, msg, 21);
+	   return 0;
+   }
+   ```
+
+   <div style="text-align: center;">
+      <img src="https://github.com/BOLTB0X/Linux-Study/blob/main/img/Step05-2.jpg?raw=true" alt="Example Image" width="90%">
+   </div>
+
 
 ## 참고
 
