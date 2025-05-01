@@ -114,3 +114,7 @@ int main() {
 }
 ```
 
+## 결과
+
+
+![ㅇ](https://github.com/BOLTB0X/Linux-Study/blob/main/img/Step07.jpg?raw=true)
