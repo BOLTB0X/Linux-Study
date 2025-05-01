@@ -29,4 +29,7 @@
 
 ## [Step 8 메모리 구조와 동적 메모리 할당](https://github.com/BOLTB0X/Linux-Study/tree/main/Step08)
 
+## [Step 9 리눅스 자원 사용률 측정 툴 만들기](https://github.com/BOLTB0X/Linux-Study/tree/main/Step09)
+
+## [Step 10 메모리 사용량 예측기 (CSV 기반 + 자동 측정)](https://github.com/BOLTB0X/Linux-Study/tree/main/Step10)
 
