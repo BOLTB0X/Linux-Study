@@ -116,8 +116,40 @@
    <img src="https://github.com/BOLTB0X/Linux-Study/blob/main/img/Step09.jpg?raw=true" alt="Example Image" width="90%">
 </div>
 
+```c
+unsigned long long get_cpu_idle_time() {
+    FILE *fp = fopen("/proc/stat", "r");
+    if (!fp) return 0;
+
+    char buffer[1024];
+    fgets(buffer, sizeof(buffer), fp);
+    fclose(fp);
+
+    unsigned long long user, nice, system, idle, iowait, irq, softirq, steal;
+    sscanf(buffer, "cpu %llu %llu %llu %llu %llu %llu %llu %llu",
+           &user, &nice, &system, &idle, &iowait, &irq, &softirq, &steal);
+
+    return idle + iowait;
+}
+```
+
 ## [Step 10 메모리 사용량 예측기 (CSV 기반 + 자동 측정)](https://github.com/BOLTB0X/Linux-Study/tree/main/Step10)
 
 <div style="text-align: center;">
    <img src="https://github.com/BOLTB0X/Linux-Study/blob/main/img/Step10.jpg?raw=true" alt="Example Image" width="90%">
 </div>
+
+```c
+// 선형 회귀
+double sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0;
+for (int i = 0; i < n; i++) {
+	sum_x += x[i];
+	sum_y += y[i];
+		
+	sum_xy += x[i] * y[i];
+	sum_x2 += x[i] * x[i];
+}
+
+double a = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x);
+double b = (sum_y - a * sum_x) / n;
+```
